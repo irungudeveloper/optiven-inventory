@@ -22,8 +22,14 @@ class Employee extends Model
     	return $this->belongsTo(App\Departments::class);
     }
 
-    public function oder()
+    public function order()
     {
     	return $this->hasMany(App\Order::class);
+    }
+
+    public function issued()
+    {
+    	return $this->hasMany(App\Issued::class);
+   
     }
 }

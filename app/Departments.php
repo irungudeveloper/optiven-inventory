@@ -8,7 +8,7 @@ class Departments extends Model
 {
     //
     protected $table = "departments";
-    protected $fillable = ['name'];
+    protected $fillable = ['name',];
 
     public function employee()
     {

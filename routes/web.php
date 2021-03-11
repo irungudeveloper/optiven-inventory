@@ -21,6 +21,17 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('dashboard','DashboardController@index')->name('dashboard');
+
+//Routes for category controller
+Route::resource('category','CategoryController');
+
+//Route for brand controller
+Route::resource('brand','BrandController');
+
+//Route for user-roles
+Route::resource('role','RolesController');
+
 Auth::routes();
 
 Route::get('/home', function() {
