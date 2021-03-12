@@ -14,22 +14,14 @@
 			<table id="myTable" class="table table-striped table-bordered" style="width: 100%">
 				<thead class="bg-white">
 					<th>#</th>
-					<th>Sir Name</th>
-					<th>Other Name(s)</th>
-					<th>Phone Number</th>
-					<th>Email</th>
-					<th>Department</th>
+					<th>Name</th>
 					<th></th>
 				</thead>
 				<tbody>
-					@foreach($employee as $data)
+					@foreach($department as $data)
 						<tr>
 							<td> {{ $data->id }} </td>
-							<td> {{ $data->sir_name }} </td>
-							<td> {{ $data->other_name }} </td>
-							<td> {{ $data->phone_number }} </td>
-							<td> {{ $data->email }} </td>
-							<td> {{ $data->department->name }} </td>
+							<td> {{ $data->name }} </td>
 							<td></td>
 						</tr>
 					@endforeach

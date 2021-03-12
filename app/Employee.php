@@ -19,17 +19,17 @@ class Employee extends Model
 
     public function department()
     {
-    	return $this->belongsTo(App\Departments::class);
+    	return $this->belongsTo(Departments::class);
     }
 
     public function order()
     {
-    	return $this->hasMany(App\Order::class);
+    	return $this->hasMany(Order::class);
     }
 
     public function issued()
     {
-    	return $this->hasMany(App\Issued::class);
+    	return $this->hasMany(Issued::class);
    
     }
 }

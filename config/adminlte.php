@@ -345,7 +345,33 @@ return [
             'icon'=>'fas fa-table',
             'url'=>'#'
         ],
+
+        //DEPARTMENT MENU ITEMS
+        ['header'=>'DEPARTMENT SETTINGS'],
+        [
+            'text'=>'Add Department',
+            'icon'=>'fas fa-plus',
+            'url'=>'department/create',
+        ],
+        [
+            'text'=>'Manage Departments',
+            'icon'=>'fas fa-table',
+            'url'=>'department',
+        ],
            
+        //EMPLOYEE MENU ITEMS
+        ['header'=>'EMPLOYEE SETTINGS'],
+        [
+            'text'=>'Add Employee',
+            'icon'=>'fas fa-user-plus',
+            'url'=>'employee/create',
+        ],
+        [
+            'text'=>'Manage Employee Details',
+            'icon'=>'fas fa-user-edit',
+            'url'=>'employee',
+        ],
+
     ],
 
     /*

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Departments;
 
 class DepartmentsController extends Controller
 {
@@ -14,6 +15,8 @@ class DepartmentsController extends Controller
     public function index()
     {
         //
+        $department = Departments::all();
+        return view('department.index')->with('department',$department);
     }
 
     /**
@@ -24,6 +27,7 @@ class DepartmentsController extends Controller
     public function create()
     {
         //
+        return view('department.create');
     }
 
     /**
@@ -35,6 +39,31 @@ class DepartmentsController extends Controller
     public function store(Request $request)
     {
         //
+        $department = new Departments;
+
+        $validator = $request->validate(['department'=>'required']);
+
+        if ($validator) 
+        {
+            $department->name = $request->department;
+
+            if ($department->save()) 
+            {
+                return json_encode(array([
+                                        'response_code'=>201,
+                                        'response_message'=>"Department Created Successfully",
+                                    ]));   
+            }
+            return json_encode(array([
+                                        'response_code'=>500,
+                                        'response_message'=>"Internal Server Error! Try Again",
+                                    ]));   
+        }
+
+        return json_encode(array([
+                                        'response_code'=>301,
+                                        'response_message'=>"Invalid Input! Please Try Again",
+                                    ]));   
     }
 
     /**

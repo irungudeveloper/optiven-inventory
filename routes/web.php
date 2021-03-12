@@ -35,6 +35,12 @@ Route::resource('role','RolesController');
 //Route for Inventory Controller
 Route::resource('inventory','InventoryController');
 
+//Route for Department Controller
+Route::resource('department','DepartmentsController');
+
+//Route for Employee Controller
+Route::resource('employee','EmployeeController');
+
 Route::get('register','Auth.RegisterController@index')->name('register');
 
 Auth::routes();
