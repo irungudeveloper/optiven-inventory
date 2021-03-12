@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Category;
 
 class CategoryController extends Controller
 {
@@ -14,6 +15,8 @@ class CategoryController extends Controller
     public function index()
     {
         //
+        $category = Category::all();
+        return view('category.index')->with('categories',$category);
     }
 
     /**
@@ -24,6 +27,7 @@ class CategoryController extends Controller
     public function create()
     {
         //
+        
         return view('category.create');
     }
 
@@ -36,6 +40,29 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         //
+        $category = new Category;
+
+        $validator = $request->validate(['category'=>'required']);
+
+        if ($validator) 
+        {
+            $category->name = $request->category;
+            if ($category->save()) 
+            {
+                return json_encode(array(['response_code'=>201,
+                                          'message'=>'Category Created Succesfully',
+                                        ]));         
+            }
+
+            return json_encode(array(['response_code'=>500,
+                                          'message'=>'Error Occured! Try Again',
+                                        ]));         
+
+        }
+
+        return json_encode(array(['response_code'=>301,
+                                          'message'=>'Invalid input! Please Try Again',
+                                        ]));         
     }
 
     /**

@@ -32,6 +32,11 @@ Route::resource('brand','BrandController');
 //Route for user-roles
 Route::resource('role','RolesController');
 
+//Route for Inventory Controller
+Route::resource('inventory','InventoryController');
+
+Route::get('register','Auth.RegisterController@index')->name('register');
+
 Auth::routes();
 
 Route::get('/home', function() {

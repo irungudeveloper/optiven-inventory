@@ -26,11 +26,40 @@
 						   </div>
 						  </div>
 						<div class="form-group text-center">
-							<input type="submit" name="submit" class="btn btn-success pl-4 pr-4" value="INSERT CATEGORY">
+							<input type="button" name="submit" class="btn btn-success pl-4 pr-4" value="INSERT CATEGORY" id="create">
 						</div>
 					</form>
 				</div>
 			</div>
 		</div>
 	</div>
+@stop
+
+@section('js')
+	<script type="text/javascript">
+		$('#create').on('click', function(e) 
+		{
+			    e.preventDefault();
+			    e.stopPropagation(); // only neccessary if something above is listening to the (default-)event too
+			    var category = $('#category').val();
+			   // console.log('Prevented');
+
+			   $.ajax({
+
+			   		url:' {{ route("category.store") }} ',
+			   		type:'POST',
+			   		data:{
+
+			   				"_token":" {{ csrf_token() }} ",
+			   				category:category,
+			   		},
+			   		dataType:'json',
+			   		success:function(response)
+			   		{
+			   			console.log(response);
+			   		}
+			   });
+
+			});
+	</script>
 @stop

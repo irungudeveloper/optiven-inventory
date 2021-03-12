@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Inventory;
+use App\Category;
+use App\Brand;
 
 class InventoryController extends Controller
 {
@@ -14,6 +17,9 @@ class InventoryController extends Controller
     public function index()
     {
         //
+        $inventory = Inventory::all();
+
+        return view('inventory.index')->with('inventory',$inventory);
     }
 
     /**
@@ -24,6 +30,11 @@ class InventoryController extends Controller
     public function create()
     {
         //
+        $category = Category::all();
+        $brand = Brand::all();
+
+        return view('inventory.create')->with('category',$category)
+                                       ->with('brand',$brand);
     }
 
     /**
@@ -35,6 +46,39 @@ class InventoryController extends Controller
     public function store(Request $request)
     {
         //
+        $inventory = new Inventory;
+
+        $validator = $request->validate([
+                                    'serial_number'=>'required',
+                                    'model_number'=>'required',
+                                    'category_id'=>'required',
+                                    'brand_id'=>'required',
+                                    'description'=>'required',
+                                ]);
+        if ($validator) 
+        {
+            $inventory->serial_number = $request->serial_number;
+            $inventory->model_number = $request->model_number;
+            $inventory->category_id = $request->category_id;
+            $inventory->brand_id = $request->brand_id;
+            $inventory->description = $request->description;
+            $inventory->availability = 1;
+
+            if ($inventory->save()) 
+            {
+                return json_encode(array(['response_code'=>201,
+                                           'response_message'=>'Inventory Item Added Successfully',
+                                        ]));
+            }
+
+            return json_encode(array(['response_code'=>500,
+                                           'response_message'=>'Error When Inserting! PLease Try Again',
+                                        ]));
+        }
+
+        return json_encode(array(['response_code'=>301,
+                                           'response_message'=>'Invalid Input',
+                                        ]));
     }
 
     /**

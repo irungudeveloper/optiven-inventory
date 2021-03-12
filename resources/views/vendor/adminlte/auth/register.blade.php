@@ -49,6 +49,16 @@
             @endif
         </div>
 
+        {{-- Role Field --}}
+        <div class="input-group mb-3">
+           <select class="form-control" name="role_id">
+            <option>--SELECT ROLE--</option>
+               @foreach($roles as $role)
+                    <option value=" {{ $role->id }} "> {{ $role->name }} </option>
+               @endforeach
+           </select>
+        </div>
+
         {{-- Password field --}}
         <div class="input-group mb-3">
             <input type="password" name="password"

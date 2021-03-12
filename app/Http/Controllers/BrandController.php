@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Brand;
 
 class BrandController extends Controller
 {
@@ -14,6 +15,8 @@ class BrandController extends Controller
     public function index()
     {
         //
+        $brand = Brand::all();
+        return view('brand.index')->with('brand',$brand);
     }
 
     /**
@@ -36,6 +39,27 @@ class BrandController extends Controller
     public function store(Request $request)
     {
         //
+        $brand = new Brand;
+
+        $validator = $request->validate(['brand'=>'required']);
+
+        if ($validator) 
+        {
+           $brand->name = $request->brand;
+           if ($brand->save()) 
+           {
+               return response(array([  'response_code'=>200,
+                                        'respose_message'=>'Brand Created Successfully',
+                                     ]));
+           }
+                return response(array([  'response_code'=>500,
+                                        'respose_message'=>'Insertion Error Please Try Again',
+                                     ]));
+        }
+
+        return response(array([  'response_code'=>301,
+                                        'respose_message'=>'Invalid Input',
+                                     ]));
     }
 
     /**

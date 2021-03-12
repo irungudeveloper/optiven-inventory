@@ -270,7 +270,7 @@ return [
         ],
         [
             'text'  =>  'View User Roles',
-            'url'   =>  '#',
+            'url'   =>  'role',
             'icon'  =>  'fas fa-table',
         ],
 
@@ -284,7 +284,7 @@ return [
                             ],
                             [
                                 'text' => 'View Categories',
-                                'url'  => 'category/index',
+                                'url'  => 'category',
                                 'icon' => 'fas fa-table', 
                             ],
         
@@ -301,7 +301,7 @@ return [
                             ],
                             [
                                 'text'=>'View Brands',
-                                'url'=>'brand/index',
+                                'url'=>'brand',
                                 'icon'=>'fas fa-table',
                             ],
 
@@ -316,7 +316,7 @@ return [
                             ],
                             [
                                 'text'=>'View Hardware',
-                                'url'=>'inventory/index',
+                                'url'=>'inventory',
                                 'icon'=>'fas fa-table',
                             ],
            
@@ -384,21 +384,21 @@ return [
 
     'plugins' => [
         'Datatables' => [
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',
-                    'asset' => false,
+                    'asset' => true,
                     'location' => '//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js',
                 ],
                 [
                     'type' => 'js',
-                    'asset' => false,
+                    'asset' => true,
                     'location' => '//cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js',
                 ],
                 [
                     'type' => 'css',
-                    'asset' => false,
+                    'asset' => true,
                     'location' => '//cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css',
                 ],
             ],

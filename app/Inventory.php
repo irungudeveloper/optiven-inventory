@@ -19,16 +19,16 @@ class Inventory extends Model
 
     public function category()
     {
-    	return $this->belongsTo(App\Category::class);
+    	return $this->belongsTo(Category::class);
     }
 
     public function brand()
     {
-    	return $this->belongsTo(App\Brand::class);
+    	return $this->belongsTo(Brand::class);
     }
 
     public function issued()
     {
-    	return $this->hasMany(App\Issued::class);
+    	return $this->hasMany(Issued::class);
     }
 }

@@ -22,11 +22,42 @@
 						   </div>
 						  </div>
 						<div class="form-group text-center">
-							<input type="submit" name="submit" class="btn btn-success pl-4 pr-4" value="INSERT ROLE">
+							<button class="btn btn-success pl-4 pr-4" id="submit">INSERT ROLE</button>
+							<!-- <input type="submit" name="submit" class="btn btn-success pl-4 pr-4" value="INSERT ROLE"> -->
 						</div>
 					</form>
 				</div>
 			</div>
 		</div>
 	</div>
+@stop
+
+@section('js')
+	<script type="text/javascript">
+		$('#submit').on('click',function(e) 
+		{
+			e.preventDefault();
+			// console.log('stopped');
+			// var role =document.getElementById('role');
+			var role = $('#role').val();
+			console.log(role);
+
+			$.ajax({
+
+				url:" {{ route('role.store') }} ",
+				type:'POST',
+				data:{
+						"_token": '{{ csrf_token() }}',
+						role:role,
+				},
+				dataType:"json",
+				success:function(response)
+				{
+					console.log(response);
+				}
+
+			});
+
+		});
+	</script>
 @stop

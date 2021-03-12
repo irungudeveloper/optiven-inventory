@@ -22,11 +22,38 @@
 						   </div>
 						  </div>
 						<div class="form-group text-center">
-							<input type="submit" name="submit" class="btn btn-success pl-4 pr-4" value="INSERT BRAND">
+							<input type="submit" name="submit" class="btn btn-success pl-4 pr-4" value="INSERT BRAND" id="create">
 						</div>
 					</form>
 				</div>
 			</div>
 		</div>
 	</div>
+@stop
+
+@section('js')
+	<script type="text/javascript">
+		$('#create').on('click',function(e){
+			e.preventDefault();
+			console.log('prevented');
+			var brand = $('#brand').val();
+
+			$.ajax({
+
+					url:' {{ route("brand.store") }} ',
+					type:'POST',
+					data:{
+							"_token":' {{ csrf_token() }} ',
+							brand:brand,
+					},
+					dataType:'json',
+					success:function(response)
+					{
+						console.log(response);
+					}
+
+			});
+
+		});
+	</script>
 @stop
