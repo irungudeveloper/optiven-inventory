@@ -41,7 +41,6 @@ Route::resource('department','DepartmentsController');
 //Route for Employee Controller
 Route::resource('employee','EmployeeController');
 
-Route::get('register','Auth.RegisterController@index')->name('register');
 
 Auth::routes();
 
