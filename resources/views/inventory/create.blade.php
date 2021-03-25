@@ -90,6 +90,10 @@
 					success:function(response)
 					{
 						console.log(response);
+						if (response[0].response_code === 201) 
+			   			{
+							swal.fire("Done!", response[0].message, "success");
+						} 
 					}
 			});
 

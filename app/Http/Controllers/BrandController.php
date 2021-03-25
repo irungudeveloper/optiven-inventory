@@ -48,7 +48,7 @@ class BrandController extends Controller
            $brand->name = $request->brand;
            if ($brand->save()) 
            {
-               return response(array([  'response_code'=>200,
+               return response(array([  'response_code'=>201,
                                         'respose_message'=>'Brand Created Successfully',
                                      ]));
            }

@@ -14,4 +14,9 @@ class Category extends Model
     {
     	return $this->hasMany(App\Inventory::class);
     }
+
+    public function order()
+    {
+    	return $this->hasMany(Order::class);
+    }
 }

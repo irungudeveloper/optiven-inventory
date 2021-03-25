@@ -12,14 +12,15 @@ class Issued extends Model
     						'inventory_id',
     						'employee_id',
     						'expected_return_date',
+                            'status',
     					];
     public function inventory()
     {
-    	return $this->belongsTo(App\Inventory::class);
+    	return $this->belongsTo(Inventory::class);
     }
 
     public function employee()
     {
-    	return $this->belongsTo(App\Employee::class);
+    	return $this->belongsTo(Employee::class);
     }
 }

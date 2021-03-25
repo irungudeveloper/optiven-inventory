@@ -41,6 +41,18 @@ Route::resource('department','DepartmentsController');
 //Route for Employee Controller
 Route::resource('employee','EmployeeController');
 
+//Route for Order Controller
+Route::resource('order','OrderController');
+
+//Route for Issue Controller
+Route::resource('issue','IssueController');
+
+//Route for AJAX REQUESTS
+Route::post('issue/item','IssueController@getPendingItems')->name('issue.item');
+Route::post('issue/employee','IssueController@getPendingEmployee')->name('issue.employee');
+Route::post('issue/category','IssueController@getAvailableInventory')->name('issue.category');
+Route::post('pending/issued','IssueController@setPendingItem')->name('pending.issued');
+Route::post('issue/returned','IssueController@returnIssuedItem')->name('issue.returned');
 
 Auth::routes();
 

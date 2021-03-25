@@ -17,11 +17,17 @@ class Order extends Model
 
     public function employee()
     {
-    	return $this->belongsTo(App\Employee::class);
+    	return $this->belongsTo(Employee::class);
     }
 
     public function user()
     {
-    	return $this->belongsTo(App\User::class);
+    	return $this->belongsTo(User::class);
     }
+
+    public function category()
+    {
+       return $this->belongsTo(Category::class);
+    }
+
 }

@@ -325,12 +325,12 @@ return [
         [
             'text'=>'Place Item Order',
             'icon'=>'fas fa-plus',
-            'url'=>'#',
+            'url'=>'order/create',
         ],
         [
             'text'=>'View Orders',
             'icon'=>'fas fa-table',
-            'url'=>'#',
+            'url'=>'order',
         ],
 
         //ISSUED MENU ITEMS SEETINGS
@@ -338,12 +338,12 @@ return [
         [
             'text'=>'Issue Order Item',
             'icon'=>'fas fa-plus',
-            'url'=>'#',
+            'url'=>'issue/create',
         ],
         [
             'text'=>'View Issued Items',
             'icon'=>'fas fa-table',
-            'url'=>'#'
+            'url'=>'issue',
         ],
 
         //DEPARTMENT MENU ITEMS
