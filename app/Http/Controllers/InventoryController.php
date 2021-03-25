@@ -101,6 +101,13 @@ class InventoryController extends Controller
     public function edit($id)
     {
         //
+         $category = Category::all();
+         $brand = Brand::all();
+         $inventory = Inventory::findOrFail($id);
+
+         return view('inventory.edit')->with('category',$category)
+                                      ->with('brand',$brand)
+                                      ->with('inventory',$inventory);
     }
 
     /**
@@ -113,6 +120,20 @@ class InventoryController extends Controller
     public function update(Request $request, $id)
     {
         //
+         $inventory = Inventory::where('id',$request->id)
+                                ->first()
+                                ->update([
+                                            'serial_number'=>$request->serial_number,
+                                            'model_number'=>$request->model_number,
+                                            'category_id'=>$request->category_id,
+                                            'brand_id'=>$request->brand_id,
+                                            'description'=>$request->description,
+                                            ]);
+
+        if ($inventory) 
+        {
+            return json_encode(array(['response_code'=>200]));
+        }
     }
 
     /**
@@ -124,5 +145,11 @@ class InventoryController extends Controller
     public function destroy($id)
     {
         //
+        $inventory = Inventory::findOrFail($id);
+
+        if ($inventory->delete()) 
+        {
+            return redirect()->route('inventory.index');
+        }
     }
 }

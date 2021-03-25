@@ -80,6 +80,7 @@ class CategoryController extends Controller
     public function show($id)
     {
         //
+        echo "SHOW";
     }
 
     /**
@@ -90,7 +91,10 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        
+        $category = Category::find($id);
+        return view('category.edit')->with('category',$category);
+
     }
 
     /**
@@ -103,6 +107,21 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         //
+        // $name = 
+
+        $category = Category::where('id',$request->id)->update(['name'=>$request->category]);
+
+        if ($category) 
+        {
+            return json_encode(array([ 'response_code'=>200,
+                                       'message'=>'Category Updated Successfully',
+                                       
+                                ]));
+        }
+
+        return json_encode(array(['response_code'=>300,
+                                  'message'=>'Category Not Updated',
+                                ]));
     }
 
     /**
@@ -114,5 +133,16 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         //
+        // echo "DESTROY";
+
+        $category = Category::findOrFail($id);
+
+        if ($category->delete()) 
+        {
+            return redirect()->route('category.index');
+        }
+
+        
+        
     }
 }

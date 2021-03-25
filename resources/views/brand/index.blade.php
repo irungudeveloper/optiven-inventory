@@ -22,7 +22,24 @@
 						<tr>
 							<td> {{ $data->id }} </td>
 							<td> {{ $data->name }} </td>
-							<td></td>
+							<td>
+								<div class="row">
+									<div class="col-5 col-sm-12 col-md-2 col-lg-2">
+										<a class="btn btn-outline-info rounded-circle" href=" {{ route('brand.edit',$data->id) }} ">
+											<i class="fas fa-eye"></i>
+										</a>
+									</div>
+									<div class="col-5 col-sm-12 col-md-2 col-lg-2">
+										<form action=" {{ route('brand.destroy',$data->id ) }} " method="post">
+											@csrf
+											@method('delete')
+											<button type="submit" class="btn btn-outline-danger rounded-pill ml-3"/>
+												<i class="fas fa-trash-alt"></i>
+											</button>
+										</form>
+									</div>
+								</div>			
+							</td>
 						</tr>
 					@endforeach
 				</tbody>

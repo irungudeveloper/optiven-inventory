@@ -82,6 +82,9 @@ class BrandController extends Controller
     public function edit($id)
     {
         //
+        $brand = Brand::find($id);
+
+        return view('brand.edit')->with('brand',$brand); 
     }
 
     /**
@@ -94,6 +97,19 @@ class BrandController extends Controller
     public function update(Request $request, $id)
     {
         //
+         $brand = Brand::where('id',$request->id)->update(['name'=>$request->brand]);
+
+        if ($brand) 
+        {
+            return json_encode(array([ 'response_code'=>200,
+                                       'message'=>'Brand Updated Successfully',
+                                       
+                                ]));
+        }
+
+        return json_encode(array(['response_code'=>300,
+                                  'message'=>'Brand Not Updated',
+                                ]));
     }
 
     /**
@@ -105,5 +121,12 @@ class BrandController extends Controller
     public function destroy($id)
     {
         //
+        $brand = Brand::findOrFail($id);
+
+        if ($brand->delete()) 
+        {
+            return redirect()->route('brand.index');
+        }
+            
     }
 }

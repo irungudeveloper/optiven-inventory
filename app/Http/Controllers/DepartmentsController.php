@@ -86,6 +86,9 @@ class DepartmentsController extends Controller
     public function edit($id)
     {
         //
+        $department = Departments::findOrFail($id);
+
+        return view('department.edit')->with('department',$department);
     }
 
     /**
@@ -98,6 +101,12 @@ class DepartmentsController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $department = Departments::where('id',$request->id)->update(['name'=>$request->department]);
+
+        if ($department) 
+        {
+            return json_encode(array(['response_code'=>201]));
+        }
     }
 
     /**
@@ -109,5 +118,11 @@ class DepartmentsController extends Controller
     public function destroy($id)
     {
         //
+        $department = Departments::findOrFail($id);
+
+        if ($department->delete()) 
+        {
+           return redirect()->route('department.index');
+        }
     }
 }

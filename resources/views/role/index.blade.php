@@ -22,7 +22,24 @@
 						<tr>
 							<td> {{ $role->id }} </td>
 							<td> {{ $role->name }} </td>
-							<td></td>
+							<td>
+								<div class="row">
+									<div class="col-5 col-sm-12 col-md-2 col-lg-2">
+										<a class="btn btn-outline-info rounded-circle" href=" {{ route('role.edit',$role->id) }} ">
+											<i class="fas fa-eye display-5"></i>
+										</a>
+									</div>
+									<div class="col-5 col-sm-12 col-md-2 col-lg-2">
+										<form action=" {{ route('role.destroy',$role->id ) }} " method="post">
+											@csrf
+											@method('delete')
+											<button type="submit" class="btn btn-outline-danger rounded-pill ml-2"/>
+												<i class="fas fa-trash-alt display-5"></i>
+											</button>
+										</form>
+									</div>
+								</div>			
+							</td>
 						</tr>
 					@endforeach
 				</tbody>

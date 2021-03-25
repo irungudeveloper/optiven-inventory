@@ -98,6 +98,11 @@ class EmployeeController extends Controller
     public function edit($id)
     {
         //
+         $employee = Employee::findOrFail($id);
+         $department = Departments::all();
+
+         return view('employee.edit')->with('department',$department)
+                                     ->with('employee',$employee);
     }
 
     /**
@@ -110,6 +115,20 @@ class EmployeeController extends Controller
     public function update(Request $request, $id)
     {
         //
+         $employee = Employee::where('id',$request->id)
+                                ->first()
+                                ->update([
+                                            'sir_name'=>$request->sir_name,
+                                            'other_name'=>$request->other_name,
+                                            'phone_number'=>$request->phone_number,
+                                            'email'=>$request->email,
+                                            'department_id'=>$request->department_id,
+                                            ]);
+
+        if ($employee) 
+        {
+            return json_encode(array(['response_code'=>200]));
+        }
     }
 
     /**
@@ -121,5 +140,11 @@ class EmployeeController extends Controller
     public function destroy($id)
     {
         //
+        $employee = Employee::findOrFail($id);
+
+        if ($employee->delete()) 
+        {
+            return redirect()->route('employee.index');
+        }
     }
 }

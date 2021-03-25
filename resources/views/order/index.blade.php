@@ -11,7 +11,7 @@
 @section('content')
 	<div class="row m-2 justify-content-center">
 		<div class="col-md-10 col-lg-10 col-sm-12 bg-white p-2">
-			<table id="myTable" class="table table-striped table-bordered" style="width: 100%">
+			<table id="myTable" class="table table-striped table-bordered table-responsive" style="width: 100%">
 				<thead class="bg-white">
 					<th style="width:1%;">#</th>
 					<th style="width:10%;" >Item</th>
@@ -38,7 +38,24 @@
 									<p class="btn btn-solid btn-success text-white">ISSUED</p>
 								@endif
 							</td>
-							<td></td>
+							<td>
+								<div class="row">
+									<div class="col-5 col-sm-12 col-md-2 col-lg-2">
+										<a class="btn btn-outline-info rounded-circle" href=" {{ route('order.edit',$data->id) }} ">
+											<i class="fas fa-eye display-5"></i>
+										</a>
+									</div>
+									<div class="col-5 col-sm-12 col-md-2 col-lg-2 ml-1 pl-3">
+										<form action=" {{ route('order.destroy',$data->id ) }} " method="post">
+											@csrf
+											@method('delete')
+											<button type="submit" class="btn btn-outline-danger rounded-pill ml-4"/>
+												<i class="fas fa-trash-alt display-5"></i>
+											</button>
+										</form>
+									</div>
+								</div>			
+							</td>
 						</tr>
 					@endforeach
 				</tbody>

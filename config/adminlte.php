@@ -240,136 +240,174 @@ return [
         ],
 
         //ACCOUNT SETTINGS
-        ['header'=>'ACCOUNT SETTINGS'],
+        ['header'=>'ACCOUNT SETTINGS',
+          'can'    => 'super_admin',
+        ],
 
         [
             'text'  =>  'Add User Account',
             'url'   =>  '#',
             'icon'  =>  'fas fa-user-plus',
+            'can'    => 'super_admin',
         ],
 
         [
             'text'  =>  'Edit User Account',
             'url'   =>  '#',
             'icon'  =>  'fas fa-user-edit',
+            'can'    => 'super_admin',
         ],
 
         [
             'text'  =>  'View User Accounts',
             'url'   =>  '#',
             'icon'  =>  'fas fa-table',
+            'can'    => 'super_admin',
         ],
 
 
         //USER ROLES
-        ['header'=>'USER ROLES SETTINGS'],
+
+        ['header'=>'USER ROLES SETTINGS',
+         'can'    => 'super_admin',
+        ],
         [
             'text'  =>  'Add User Roles',
             'url'   =>  'role/create',
             'icon'  =>  'fas fa-plus',
+            'can'    => 'super_admin',
         ],
         [
             'text'  =>  'View User Roles',
             'url'   =>  'role',
             'icon'  =>  'fas fa-table',
+            'can'    => 'super_admin',
         ],
 
         //CATEGORY MENU ITEMS
-        ['header'=>'CATEGORY SETTINGS'],
+        ['header'=>'CATEGORY SETTINGS',
+         'can'    => 'super_admin',
+        ],
       
                            [ 
                                 'text' => 'Add Category',
                                 'url'  => 'category/create',
                                 'icon' => 'fas fa-plus',
+                                'can'    => 'super_admin',
                             ],
                             [
                                 'text' => 'View Categories',
                                 'url'  => 'category',
                                 'icon' => 'fas fa-table', 
+                                'can'    => 'super_admin',
                             ],
         
         
         //BRAND MENU ITEMS
 
-        ['header'=>'BRAND SETTINGS'],
+        ['header'=>'BRAND SETTINGS',
+         'can'    => 'super_admin',
+        ],
 
      
                             [
                                 'text'=>'Add Brand',
                                 'url'=>'brand/create',
                                 'icon'=>'fas fa-plus',
+                                'can'    => 'super_admin',
                             ],
                             [
                                 'text'=>'View Brands',
                                 'url'=>'brand',
                                 'icon'=>'fas fa-table',
+                                'can'    => 'super_admin',
                             ],
 
 
         //PRODUCT MENU ITEMS
-        ['header'=>'INVENTORY ITEMS SETTINGS'],
+        ['header'=>'INVENTORY ITEMS SETTINGS',
+         'can'    => 'super_admin',
+        ],
         
                             [
                                 'text'=>'Add Hardware',
                                 'url'=>'inventory/create',
                                 'icon'=>'fas fa-plus',
+                                'can'    => 'super_admin',
                             ],
                             [
                                 'text'=>'View Hardware',
                                 'url'=>'inventory',
                                 'icon'=>'fas fa-table',
+                                'can'    => 'super_admin',
                             ],
            
        //ORDER MENU ITEMS SETTINGS 
-        ['header'=>'ORDER ITEMS SETTINGS'],
+        ['header'=>'ORDER ITEMS SETTINGS',
+         'can'    =>  ['super_admin','hr'],
+        ],
         [
             'text'=>'Place Item Order',
             'icon'=>'fas fa-plus',
             'url'=>'order/create',
+            'can'    => ['super_admin','hr'],
         ],
         [
             'text'=>'View Orders',
             'icon'=>'fas fa-table',
             'url'=>'order',
+            'can'    => ['super_admin','hr'],
         ],
 
         //ISSUED MENU ITEMS SEETINGS
-        ['header'=>'ISSUED ITEMS SETTINGS'],
+        ['header'=>'ISSUED ITEMS SETTINGS',
+         'can'    => 'super_admin',
+        ],
         [
             'text'=>'Issue Order Item',
             'icon'=>'fas fa-plus',
             'url'=>'issue/create',
+            'can'    => 'super_admin',
         ],
         [
             'text'=>'View Issued Items',
             'icon'=>'fas fa-table',
             'url'=>'issue',
+            'can'    => 'super_admin',
         ],
 
         //DEPARTMENT MENU ITEMS
-        ['header'=>'DEPARTMENT SETTINGS'],
+        ['header'=>'DEPARTMENT SETTINGS',
+         'can'    =>  ['super_admin','hr'],
+        ],
         [
             'text'=>'Add Department',
             'icon'=>'fas fa-plus',
             'url'=>'department/create',
+            'can'    =>  ['super_admin','hr'],
         ],
         [
             'text'=>'Manage Departments',
             'icon'=>'fas fa-table',
             'url'=>'department',
+            'can'    =>  ['super_admin','hr'],
         ],
            
         //EMPLOYEE MENU ITEMS
-        ['header'=>'EMPLOYEE SETTINGS'],
+        ['header'=>'EMPLOYEE SETTINGS',
+         'can'    =>  ['super_admin','hr'],
+        ],
         [
             'text'=>'Add Employee',
             'icon'=>'fas fa-user-plus',
             'url'=>'employee/create',
+            'can'    =>  ['super_admin','hr'],
         ],
         [
             'text'=>'Manage Employee Details',
             'icon'=>'fas fa-user-edit',
             'url'=>'employee',
+            'can'    =>  ['super_admin','hr'],
         ],
 
     ],
