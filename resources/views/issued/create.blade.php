@@ -338,6 +338,7 @@
 				},
 				success:function(response){
 					console.log(response);
+					swal.fire("Done!", "Item Issued", "success");
 				},
 				error:function(response){
 					console.log(response);
