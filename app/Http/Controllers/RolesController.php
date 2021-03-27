@@ -90,6 +90,9 @@ class RolesController extends Controller
     public function edit($id)
     {
         //
+        $role = Roles::findOrFail($id);
+
+        return view('role.edit')->with('role',$role);
     }
 
     /**
@@ -102,6 +105,12 @@ class RolesController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $role = Roles::where('id',$request->id)
+                        ->update(['name'=>$request->role]);
+        if ($role) 
+        {
+            return json_encode(array(['response_code'=>201]));
+        }
     }
 
     /**
@@ -113,5 +122,12 @@ class RolesController extends Controller
     public function destroy($id)
     {
         //
+        $role = Roles::findOrFail($id);
+
+        if ($role->delete()) 
+        {
+            return redirect()->route('role.index');
+        }
+
     }
 }

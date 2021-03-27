@@ -17,15 +17,20 @@
 					<p class="text-center">ORDER FORM</p>
 				</div>
 				<div class="card-body">
-					<form method="post">
+					<form method="put">
 						@csrf
+
+						<input type="hidden" name="order_id" id="order_id" value=" {{ $order->id }} ">
 
 						<input id="user_id" type="hidden" name="user_id" value=" {{ Auth::user()->id }} ">
 
 						 <div class="form-row mb-3">
 						  	<label for="employee">Employee Name</label>
 						  	<select id="employee" class="form-control">
-						  		<option>--SELECT EMPLOYEE--</option>
+						  		<option value=" {{ $order->employee_id }} " > {{ $order->employee->sir_name }} {{ $order->employee->other_name }} </option>
+						  		<option>
+						  			------------------------------------------------------------------------------------------------------------------------
+						  		</option>
 						  		@foreach($employee as $data)
 						  			<option value=" {{ $data->id }} "> {{ $data->sir_name }}, {{ $data->other_name }} </option>
 						  		@endforeach
@@ -34,7 +39,10 @@
 						  <div class="form-row mb-3">
 						  	<label for="category">Order Item</label>
 						  	<select id="category" class="form-control">
-						  		<option>--SELECT ORDER ITEM--</option>
+						  		<option value=" {{ $order->category_id }} "> {{ $order->category->name }} </option>
+						  		<option>
+						  		--------------------------------------------------------------------------------------------------------------------------------
+						  		</option>
 						  		@foreach($category as $data)
 						  			<option value=" {{ $data->id }} "> {{ $data->name }} </option>
 						  		@endforeach
@@ -42,7 +50,7 @@
 						  </div>
 						   
 						<div class="form-group text-center">
-							<input type="button" name="submit" class="btn btn-success pl-4 pr-4" value="INSERT DETAILS" id="create">
+							<input type="button" name="submit" class="btn btn-success pl-4 pr-4" value="UPDATE DETAILS" id="create">
 						</div>
 					</form>
 				</div>
@@ -65,26 +73,28 @@
 			   var user_id = $('#user_id').val();
 			   var employee_id = $('#employee').val();
 			   var category_id = $('#category').val();
+			   var id = $('#order_id').val();
 
 			   console.log(user_id);
 
 			   $.ajax({
 
-			   		url:' {{ route("order.store") }} ',
-			   		type:'POST',
+			   		url:' {{ route("order.update",'id') }} ',
+			   		type:'PUT',
 			   		dataType:'json',
 			   		data:{
 			   				"_token":" {{ csrf_token() }} ",
 			   				user_id:user_id,
 			   				employee_id:employee_id,
 			   				category_id:category_id,
+			   				id:id,
 			   		},
 			   		success:function(response)
 			   		{
 			   			console.log(response);
-			   			if (response[0].response_code === 201) 
+			   			if (response[0].response_code === 200) 
 			   			{
-							swal.fire("Done!", "Order Submitted For Processing" , "success");
+							swal.fire("Done!", "Record Updated Successfully" , "success");
 						} 
 			   		},
 			   		error:function(response)
@@ -93,29 +103,7 @@
 			   		}
 			   });
 
-			   // $.ajax({
-
-			   // 		url:' {{ route("employee.store") }} ',
-			   // 		type:'POST',
-			   // 		data:{
-
-			   // 				"_token":" {{ csrf_token() }} ",
-			   // 				sir_name:sir_name,
-			   // 				other_name:other_name,
-			   // 				department_id:department_id,
-			   // 				phone_number:phone_number,
-			   // 				email:email,
-			   // 		},
-			   // 		dataType:'json',
-			   // 		success:function(response)
-			   // 		{
-			   // 			console.log(response);
-			   // 			if (response[0].response_code === 201) 
-			   // 			{
-						// 	swal.fire("Done!", response[0].message, "success");
-						// } 
-			   // 		}
-			   // });
+			 
 
 			});
 	</script>

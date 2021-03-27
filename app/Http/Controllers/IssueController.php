@@ -183,6 +183,23 @@ class IssueController extends Controller
     public function edit($id)
     {
         //
+        $issue = Issued::findOrFail($id);
+        $category = DB::table('category')
+                        ->join('orders','category.id','=','orders.category_id')
+                        ->groupBy('orders.category_id')
+                        ->where('orders.status',0)
+                        ->get();
+
+        $employee = DB::table('employee')
+                        ->join('orders','employee.id','=','orders.employee_id')
+                        ->join('departments','employee.department_id','=','departments.id')
+                        ->groupBy('orders.employee_id')
+                        ->where('orders.status',0)
+                        ->get();
+
+        return view('issued.edit')->with('issue',$issue)
+                                  ->with('category',$category)
+                                  ->with('employee',$employee);
     }
 
     /**
@@ -195,6 +212,17 @@ class IssueController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $issue = Issued::where('id',$request->id)
+                          ->first()
+                          ->update([
+                                     'employee_id'=>$request->employee_id,
+                                     'inventory_id'=>$request->inventory_id,
+                                     'expected_return_date'=>$request->return_date,
+                                    ]);
+        if ($issue) 
+        {
+            return json_encode(array(['response_code'=>200]));
+        }
     }
 
     /**
@@ -206,5 +234,11 @@ class IssueController extends Controller
     public function destroy($id)
     {
         //
+        $issue = Issued::findOrFail($id);
+
+        if ($issue->delete()) 
+        {
+            return redirect()->route('issue.index');
+        }
     }
 }

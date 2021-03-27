@@ -104,6 +104,13 @@ class OrderController extends Controller
     public function edit($id)
     {
         //
+        $employee = Employee::all();
+        $category = Category::all();
+        $order = Order::findOrFail($id);
+
+        return view('order.edit')->with('order',$order)
+                                 ->with('employee',$employee)
+                                 ->with('category',$category);
     }
 
     /**
@@ -116,6 +123,17 @@ class OrderController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $order = Order::where('id',$request->id)
+                        ->first()
+                        ->update([
+                                    'user_id'=>$request->user_id,
+                                    'employee_id'=>$request->employee_id,
+                                    'category_id'=>$request->category_id,
+                                ]);
+        if ($order) 
+        {
+            return json_encode(array(['response_code'=>200]));
+        }
     }
 
     /**
@@ -127,5 +145,11 @@ class OrderController extends Controller
     public function destroy($id)
     {
         //
+        $order = Order::findOrFail($id);
+
+        if ($order->delete()) 
+        {
+            return redirect()->route('order.index');
+        }
     }
 }
